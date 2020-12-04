@@ -16,8 +16,8 @@ target configured to use SSH, runs an SSH server, executes `inspec exec`, and
 marshals InSpec tests through the SSH server to the machine being provisioned
 by Packer.
 
--> **Note:** Inspec is required to be installed on the host machine and 
-available in it's corresponding path. It is not required to be installed 
+-> **Note:** Inspec is required to be installed on the host machine and
+available in it's corresponding path. It is not required to be installed
 on the provisioned image.
 
 ## Basic Example
@@ -83,21 +83,21 @@ Optional Parameters:
   running InSpec. Usage example:
 
   <Tabs>
-  <Tab heading="JSON">
+<Tab heading="JSON">
 
   ```json
     "inspec_env_vars": [ "FOO=bar" ]
   ```
 
   </Tab>
-  <Tab heading="HCL2">
+<Tab heading="HCL2">
 
   ```hcl
      inspec_env_vars = [ "FOO=bar" ]
   ```
 
   </Tab>
-  </Tabs>
+</Tabs>
 
 - `command` (string) - The command to invoke InSpec. Defaults to `inspec`.
 
@@ -106,20 +106,21 @@ Optional Parameters:
   not be quoted. Usage example:
 
   <Tabs>
-  <Tab heading="JSON">
+<Tab heading="JSON">
 
   ```json
     "extra_arguments": [ "--sudo", "--reporter", "json" ]
   ```
+
   </Tab>
-  <Tab heading="HCL2">
+<Tab heading="HCL2">
 
   ```hcl
      extra_arguments = [ "--sudo", "--reporter", "json" ]
   ```
 
   </Tab>
-  </Tabs>
+</Tabs>
 
 - `attributes` (array of strings) - Attribute Files used by InSpec which will
   be passed to the `--input-file` argument of the `inspec` command when this
