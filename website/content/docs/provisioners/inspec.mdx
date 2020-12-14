@@ -2,7 +2,6 @@
 description: |
   The inspec Packer provisioner allows inspec profiles to be run to test the
   machine.
-layout: docs
 page_title: InSpec - Provisioners
 sidebar_title: InSpec
 ---
@@ -16,8 +15,8 @@ target configured to use SSH, runs an SSH server, executes `inspec exec`, and
 marshals InSpec tests through the SSH server to the machine being provisioned
 by Packer.
 
--> **Note:** Inspec is required to be installed on the host machine and 
-available in it's corresponding path. It is not required to be installed 
+-> **Note:** Inspec is required to be installed on the host machine and
+available in it's corresponding path. It is not required to be installed
 on the provisioned image.
 
 ## Basic Example
@@ -82,22 +81,22 @@ Optional Parameters:
 - `inspec_env_vars` (array of strings) - Environment variables to set before
   running InSpec. Usage example:
 
-  <Tabs>
-  <Tab heading="JSON">
+<Tabs>
+<Tab heading="JSON">
 
-  ```json
-    "inspec_env_vars": [ "FOO=bar" ]
-  ```
+```json
+  "inspec_env_vars": [ "FOO=bar" ]
+```
 
-  </Tab>
-  <Tab heading="HCL2">
+</Tab>
+<Tab heading="HCL2">
 
-  ```hcl
-     inspec_env_vars = [ "FOO=bar" ]
-  ```
+```hcl
+   inspec_env_vars = [ "FOO=bar" ]
+```
 
-  </Tab>
-  </Tabs>
+</Tab>
+</Tabs>
 
 - `command` (string) - The command to invoke InSpec. Defaults to `inspec`.
 
@@ -105,21 +104,22 @@ Optional Parameters:
   These arguments _will not_ be passed through a shell and arguments should
   not be quoted. Usage example:
 
-  <Tabs>
-  <Tab heading="JSON">
+<Tabs>
+<Tab heading="JSON">
 
-  ```json
-    "extra_arguments": [ "--sudo", "--reporter", "json" ]
-  ```
-  </Tab>
-  <Tab heading="HCL2">
+```json
+  "extra_arguments": [ "--sudo", "--reporter", "json" ]
+```
 
-  ```hcl
-     extra_arguments = [ "--sudo", "--reporter", "json" ]
-  ```
+</Tab>
+<Tab heading="HCL2">
 
-  </Tab>
-  </Tabs>
+```hcl
+   extra_arguments = [ "--sudo", "--reporter", "json" ]
+```
+
+</Tab>
+</Tabs>
 
 - `attributes` (array of strings) - Attribute Files used by InSpec which will
   be passed to the `--input-file` argument of the `inspec` command when this
