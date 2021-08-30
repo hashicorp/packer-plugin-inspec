@@ -1,4 +1,4 @@
-module packer-plugin-scaffolding
+module github.com/hashicorp/packer-plugin-inspec
 
 go 1.16
 

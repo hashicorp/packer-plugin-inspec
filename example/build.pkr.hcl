@@ -1,40 +1,23 @@
 packer {
   required_plugins {
-    scaffolding = {
+    inspec = {
       version = ">=v0.1.0"
-      source  = "github.com/hashicorp/scaffolding"
+      source  = "github.com/hashicorp/inspec"
     }
   }
 }
 
-source "scaffolding-my-builder" "foo-example" {
-  mock = local.foo
-}
-
-source "scaffolding-my-builder" "bar-example" {
-  mock = local.bar
+source "digitalocean" "example"{
+    api_token = "<digital ocean api token>"
+    image     = "ubuntu-14-04-x64"
+    region    = "sfo1"
 }
 
 build {
-  sources = [
-    "source.scaffolding-my-builder.foo-example",
-  ]
-
-  source "source.scaffolding-my-builder.bar-example" {
-    name = "bar"
-  }
-
-  provisioner "scaffolding-my-provisioner" {
-    only = ["scaffolding-my-builder.foo-example"]
-    mock = "foo: ${local.foo}"
-  }
-
-  provisioner "scaffolding-my-provisioner" {
-    only = ["scaffolding-my-builder.bar"]
-    mock = "bar: ${local.bar}"
-  }
-
-  post-processor "scaffolding-my-post-processor" {
-    mock = "post-processor mock-config"
-  }
+    sources = [
+        "source.digitalocean.example"
+    ]
+    provisioner "inspec" {
+        profile = "https://github.com/dev-sec/linux-baseline"
+    }
 }
