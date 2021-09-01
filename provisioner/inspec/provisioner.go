@@ -254,7 +254,7 @@ func (p *Provisioner) Provision(ctx context.Context, ui packersdk.Ui, comm packe
 	keyChecker := ssh.CertChecker{
 		UserKeyFallback: func(conn ssh.ConnMetadata, pubKey ssh.PublicKey) (*ssh.Permissions, error) {
 			if user := conn.User(); user != p.config.User {
-				return nil, errors.New(fmt.Sprintf("authentication failed: %s is not a valid user", user))
+				return nil, fmt.Errorf("authentication failed: %s is not a valid user", user)
 			}
 
 			if !bytes.Equal(k.Marshal(), pubKey.Marshal()) {
@@ -330,8 +330,8 @@ func (p *Provisioner) Provision(ctx context.Context, ui packersdk.Ui, comm packe
 	defer os.Remove(tf.Name())
 
 	w := bufio.NewWriter(tf)
-	w.WriteString(fmt.Sprintf("packer_build_name: %s\n", p.config.PackerBuildName))
-	w.WriteString(fmt.Sprintf("packer_builder_type: %s\n", p.config.PackerBuilderType))
+	_ = w.WriteString(fmt.Sprintf("packer_build_name: %s\n", p.config.PackerBuildName))
+	_ = w.WriteString(fmt.Sprintf("packer_builder_type: %s\n", p.config.PackerBuilderType))
 
 	if err := w.Flush(); err != nil {
 		tf.Close()
