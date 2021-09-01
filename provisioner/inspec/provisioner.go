@@ -330,8 +330,8 @@ func (p *Provisioner) Provision(ctx context.Context, ui packersdk.Ui, comm packe
 	defer os.Remove(tf.Name())
 
 	w := bufio.NewWriter(tf)
-	_ = w.WriteString(fmt.Sprintf("packer_build_name: %s\n", p.config.PackerBuildName))
-	_ = w.WriteString(fmt.Sprintf("packer_builder_type: %s\n", p.config.PackerBuilderType))
+	_, _ = w.WriteString(fmt.Sprintf("packer_build_name: %s\n", p.config.PackerBuildName))
+	_, _ = w.WriteString(fmt.Sprintf("packer_builder_type: %s\n", p.config.PackerBuilderType))
 
 	if err := w.Flush(); err != nil {
 		tf.Close()
