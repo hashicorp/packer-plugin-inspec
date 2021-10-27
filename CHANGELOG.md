@@ -1,4 +1,4 @@
-## 1.0.1 (October 27, 2021)
+## 1.0.0 (October 27, 2021)
 
 * Update packer-plugin-sdk to v0.2.7 [GH-15]
 * Update to use Go 1.17
